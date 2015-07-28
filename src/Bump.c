@@ -21,7 +21,7 @@ static void data_handler(AccelData *data, uint32_t num_samples) {
     (data[0].z - accelFilter[2]) < -300 && (data[0].z - accelFilter[2]) > -1300
     ) {
     text_layer_set_text(s_output_layer,s_buffer_1);
-      APP_LOG(APP_LOG_LEVEL_DEBUG,s_buffer_1);
+    APP_LOG(APP_LOG_LEVEL_DEBUG,s_buffer_1);
   }
 
   if(
@@ -32,12 +32,11 @@ static void data_handler(AccelData *data, uint32_t num_samples) {
     (data[0].z - accelFilter[2]) < -300 && (data[0].z - accelFilter[2]) > -1300
     ) {
     text_layer_set_text(s_output_layer,s_buffer_1);
-      APP_LOG(APP_LOG_LEVEL_DEBUG,s_buffer_1);
+    APP_LOG(APP_LOG_LEVEL_DEBUG,s_buffer_1);
   }
   accelFilter[0] = data[0].x;
   accelFilter[1] = data[0].y;
   accelFilter[2] = data[0].z;
-
 
 
   // accelFilter[0] = data[0].x * kFilteringFactor + accelFilter[0] * (1.0f - kFilteringFactor);
