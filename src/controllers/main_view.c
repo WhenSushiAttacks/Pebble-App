@@ -2,6 +2,7 @@
 #include "main_view.h"
 #include "handlers/vec.h"
 #include "handlers/app_message_handler.h"
+#include "controllers/bump_prep.h"
 
 static Window *main_window;
 static TextLayer *title_text_layer;
@@ -66,6 +67,10 @@ static void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, v
   APP_LOG(APP_LOG_LEVEL_INFO, "Message dropped! %i", cell_index->row);
 }
 
+static void select_long_click_handler(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
+  bump_prep_show();
+}
+
 static void main_window_load(Window *window) {
 
   static GColor bg_color;
@@ -96,6 +101,7 @@ static void main_window_load(Window *window) {
     .draw_header = menu_draw_header_callback,
     .draw_row = menu_draw_row_callback,
     .select_click = menu_select_callback,
+    .select_long_click = select_long_click_handler,
   });
 
   layer_set_hidden(menu_layer_get_layer(s_menu_layer), true);

@@ -2,6 +2,7 @@
 
 #include "app_message_handler.h"
 #include "controllers/main_view.h"
+#include "controllers/bump_result.h"
 
 static bool is_initialised = false;
 
@@ -21,9 +22,13 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
     }
 
     if(dict_find(iterator, KEY_BUMP_DATA) != NULL) {
-      APP_LOG(APP_LOG_LEVEL_ERROR, "Message dropped! %lu", dict_find(iterator, KEY_GET_DATA)->value->int32);
-      //TODO write this
-      //Load the data into bump result view and set relevant success parameters
+      bump_result_setname(dict_find(iterator, 0)->value->cstring);
+      if(strcmp(dict_find(iterator, KEY_BUMP_DATA)->value->cstring, "true") == 0) {
+        bump_result_setsuccess(true);
+      } else {
+        bump_result_setsuccess(false);
+      }
+      bump_result_show();
     }
   }
 }

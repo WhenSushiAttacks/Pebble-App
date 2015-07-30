@@ -1,5 +1,6 @@
 #include <pebble.h>
 #include "main_view.h"
+#include "handlers/gesture_handler.h"
 
 static Window *main_window;
 
@@ -8,6 +9,8 @@ static BitmapLayer *fistbump_bitmap_layer;
 static TextLayer *title_text_layer;
 
 static void bump_prep_window_load(Window *window) {
+  gesture_handler_init();
+
   static GColor bg_color;
   Layer *window_layer = window_get_root_layer(main_window);
 
@@ -41,6 +44,7 @@ static void bump_prep_window_load(Window *window) {
 
 void bump_prep_window_unload(Window *window) {
   gbitmap_destroy(fistbump_bitmap);
+  gesture_handler_deinit();
 }
 
 void bump_prep_init() {

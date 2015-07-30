@@ -7,7 +7,6 @@
 #include "controllers/bump_result.h"
 
 #include "handlers/app_message_handler.h"
-#include "handlers/gesture_handler.h"
 
 static void init(void) {
   connect_device_init();
@@ -16,12 +15,8 @@ static void init(void) {
   bump_prep_init();
   bump_result_init();
   message_handler_init();
-  gesture_handler_init();
 
   connect_device_show();
-  // bump_result_setname("Jon");
-  // bump_result_setsuccess(false);
-  // bump_result_show();
 }
 
 static void deinit(void) {
@@ -31,7 +26,6 @@ static void deinit(void) {
   detail_view_deinit();
   bump_prep_deinit();
   bump_result_deinit();
-  gesture_handler_deinit();
 }
 
 int main(void) {

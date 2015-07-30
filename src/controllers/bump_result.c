@@ -11,6 +11,7 @@ static bool isSuccessful;
 
 void timer_callback(void *data) {
   window_stack_pop(true);
+  window_stack_pop(true);
 }
 
 static void bump_result_window_load(Window *window) {
